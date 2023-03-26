@@ -17,8 +17,8 @@ const AddUser = (props) => {
     if (+enteredAge < 1) {
       return;
     }
-    console.log(enteredAge, enteredUsername);
-
+    // console.log(enteredAge, enteredUsername);
+    props.onAddUser(enteredUsername, enteredAge);
     setEnteredAge("");
     setEnteredUsername("");
   };
@@ -38,14 +38,14 @@ const AddUser = (props) => {
           type="text"
           id="username"
           value={enteredUsername}
-          onChange={ageChangeHandler}
+          onChange={usernameChangeHandler}
         />
         <label htmlFor="age"> Work Experience (years)</label>
         <input
           type="number"
           id="age"
           value={enteredAge}
-          onChange={usernameChangeHandler}
+          onChange={ageChangeHandler}
         />
         <Button type="submit">Apply for Co-Founder!</Button>
       </form>
