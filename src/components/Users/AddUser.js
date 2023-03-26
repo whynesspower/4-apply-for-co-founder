@@ -9,7 +9,18 @@ const AddUser = (props) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0)
+      return;
+    // enteredAge is a string and not a number.
+    // still we add this "+ " symbol to ensure type conversion.
+
+    if (+enteredAge < 1) {
+      return;
+    }
     console.log(enteredAge, enteredUsername);
+
+    setEnteredAge("");
+    setEnteredUsername("");
   };
 
   const usernameChangeHandler = (event) => {
@@ -23,9 +34,19 @@ const AddUser = (props) => {
     <Card className={classes.input}>
       <form onSubmit={addUserHandler}>
         <label htmlFor="username"> Username</label>
-        <input type="text" id="username" onChange={ageChangeHandler} />
+        <input
+          type="text"
+          id="username"
+          value={enteredUsername}
+          onChange={ageChangeHandler}
+        />
         <label htmlFor="age"> Work Experience (years)</label>
-        <input type="number" id="age" onChange={usernameChangeHandler} />
+        <input
+          type="number"
+          id="age"
+          value={enteredAge}
+          onChange={usernameChangeHandler}
+        />
         <Button type="submit">Apply for Co-Founder!</Button>
       </form>
     </Card>
